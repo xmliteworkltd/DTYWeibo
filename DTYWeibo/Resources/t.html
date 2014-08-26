@@ -1,0 +1,265 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0">
+                <meta name="apple-mobile-web-app-capable" content="yes" />
+                
+                <style type="text/css">
+                    
+                    body,dl,dt,dd,p,h1,h2,h3,h4,ul,li,input { margin:0; padding:0; background-color:transparent; }
+                    body { font:14px/21px "HelveticaNeue-Light","simhei"; color:#333; background:#fff;}
+                    img { vertical-align:middle; border:none; outline:none;}
+                    
+                    /* (26-17) /2 = 4.5 */
+                    
+                    @media all and (orientation:landscape) {
+                        .t { width:724px; padding:60px 0 90px 150px;}
+                    }
+                    @media all and (orientation:portrait) {
+                        .t { width:568px; padding:60px 0 90px 100px;}
+                    }
+                    
+                    .t h1 { margin:4px 0; font:30px/38px Helvetica; color:#1e1e1e;}
+                    .time { height:17px; line-height:17px; color:#a9a9a9;}
+                    .from { padding-bottom:8px; line-height:19px; color:#a9a9a9; border-bottom:#dedede 1px solid;}
+                    
+                    .c { padding-top:21px; font-size:{fontSize}px; line-height:26px; text-align:justify; word-break:break-all; word-wrap:break-word}
+                    .c br { margin-bottom:10px !important; content:"" !important; display:block !important;}
+                    
+                    .fpic { margin:5px 20px 13px 0; float:left;} /* float */
+                    .fpic + .fpic { float:none; clear:left}
+                    .bpic { width:100%; margin:5px 0 18px; display:block; clear:both;} /* block */
+                    .bpic img { width:100%; display:block; clear:both;}
+                    .ipic { margin:-4px 4px 0; display:inline !important;} /* inline */
+                    .dpic { width:auto; max-width:100%; margin:5px auto 18px; display:block; clear:both;} /* default， 图片无宽高，获取不出图片宽高，金箍棒图 */
+                    .dpic img { width:auto; max-width:100%; display:block;}
+                    
+                    .c h4 { padding-top:6px; font:17px/18px Helvetica; text-align:center;}
+                    
+                    .sinaOriginal { margin-top:40px; text-align:center; font-family:"HelveticaNeueLT-Condensed"; clear:both;}
+                    .sinaOriginal a { padding:20px 40px; color:#8baac7; font-size:18px; line-height:24px; text-decoration:none; position:relative; display:inline-block;}
+                    .sinaOriginal a:before { width:21px; height:14px; content:""; background:url(icon_seeori.png) no-repeat; background-size:cover; display:block; position:absolute; top:24px; left:7px;}
+                    .sinaOriginal a:after { width:21px; height:14px; content:""; background:url(icon_seeori.png) no-repeat; background-size:cover; display:block; position:absolute; top:24px; right:7px; -webkit-transform:scaleX(-1)}
+                    
+                    .t_rela { margin:32px 0 40px;}
+                    .t_rela h3 { padding:0 0 12px 25px; font-size:18px; color:#2a2a2a; line-height:24px; font-weight:normal; border-bottom:#dedede 1px solid; position:relative;}
+                    .t_rela h3:before { width:22px; height:22px; content:""; background:url(icon_rela.png) no-repeat; background-size:cover; display:block; position:absolute; top:4px; left:0;}
+                    .t_rela ul { list-style:none; -webkit-tap-highlight-color:rgba(0,0,0,0)}
+                    .t_rela li { padding:0 25px; position:relative;}
+                    .t_rela li:before { width:4px; height:16px; content:""; background:#b2d2e4; overflow:hidden; position:absolute; top:17px; left:11px; display:block;}
+                    .t_rela li a { height:50px; line-height:50px; color:rgba(42,42,42,.66); text-decoration:none; white-space:nowrap; text-overflow:ellipsis; border-bottom:#dedede 1px dashed; overflow:hidden; display:block;}
+                    .t_rela li a.active { color:#8baac7}
+                    .vnone { display:none }
+                    </style>
+                
+                <title>新浪视野HD</title>
+    </head>
+    <body>
+        
+        
+        <div class="t" id="t">
+            
+            
+            <div class="time">{date}</div>
+            
+            <h1>{title}</h1>
+            
+            <div class="from">{author}</div> <!-- 注意 来自 移到author里面了 -->
+            
+            
+            
+            <div class="c">{text}
+                
+                <!-- <div class="sinaOriginal"><a href="{sourceURL}">查看原网页</a></div>
+                
+                
+                <div class="vnone" id="relatedArticleWrap">
+                    <h3>相关文章</h3>
+                    <ul id="relatedArticle">
+                    </ul>
+                    
+                </div>
+                 -->
+                
+                
+            </div>
+            
+            
+            
+            
+            
+        </div>
+        
+        
+        
+        
+        
+        <script>
+            window.onload=function(){
+                
+                var ipadObj = {fromIpadJSON};
+                
+                var url= "",
+                relatedArticle = document.getElementById("relatedArticle"),
+                relatedArticleWrap = document.getElementById("relatedArticleWrap"),
+                str = "",
+                relatedArticleAjax;
+                
+                
+                url = 'http://data.3g.sina.com.cn/wboard2/gateway.php?version='+ ipadObj[0].version +'&action='+ ipadObj[0].action +'&section_id='+ipadObj[0].section_id +'&wm='+ ipadObj[0].wm +'&auth_type='+ ipadObj[0].auth_type +'&device_type='+ ipadObj[0].device_type +'&article_id='+ ipadObj[0].article_id +'&auth_key_0='+ ipadObj[0].auth_key_0 +'&client_version='+ ipadObj[0].client_version +'&device_id='+ ipadObj[0].device_id +'&skey='+ ipadObj[0].skey +'&user_id='+ ipadObj[0].user_id +'&from='+ ipadObj[0].from +'&count='+ ipadObj[0].count +'&location_code='+ ipadObj[0].location_code;
+                
+                relatedArticleAjax = new XMLHttpRequest();
+                relatedArticleAjax.onreadystatechange = stateChange;
+                relatedArticleAjax.open("get", url);
+                relatedArticleAjax.send("");
+                
+                function stateChange(){
+                    
+                    if (relatedArticleAjax.readyState == 4){
+                        if (relatedArticleAjax.status == 200){
+                            
+                            if(relatedArticleAjax.responseText.indexOf('"status":0')>0){
+                            } else {
+                                relatedArticleWrap.className ="t_rela";
+                                var arts = JSON.parse(relatedArticleAjax.responseText);
+                                for( var i in arts ){
+                                    str += '<li><a href="section_id:' + arts[i].section_id + ';article_id:' + arts[i].article_id + '">' + arts[i].title + "</a></li>";
+                                }
+                                relatedArticle.innerHTML = str;
+                            }
+                        }
+                    }
+                    
+                }
+                
+                
+                relatedArticle.addEventListener("touchstart", relatedArticleAs, false);
+                relatedArticle.addEventListener("touchend", relatedArticleAe, false);
+                
+                function relatedArticleAs(e){
+                    var ele = e.target;
+                    ele.className = "active";
+                    setTimeout(clearAs, 900);
+                }
+                function relatedArticleAe(e){
+                    var ele = e.target;
+                    ele.className = "";
+                }
+                function clearAs(){
+                    document.querySelector(".active").className = "";
+                }
+                
+                
+            }
+            </script>
+        
+        
+        
+        
+        
+        
+        <script>
+            
+            var isMove = 1;
+            document.ontouchstart = function(e){
+                isMove = 1;
+                //document.documentElement.style.webkitTapHighlightColor = "rgba(1,1,1,1)";/*webkit api*/
+            };
+            document.ontouchend = function(e){
+                if (isMove == 1 && e.target.tagName.toLowerCase() == "img") {
+                    document.location = "wkimgflag" + e.target.src;
+                }
+            };
+            document.ontouchmove = function(){
+                isMove = 2;
+            }
+            
+            var loadImgsfoo = function(func,obj) {
+                this.func = func;	
+                this.obj = obj;
+                var foo = function(){
+                    var func = this.func;
+                    return func(this.obj);
+                }.bind(this);
+                foo();
+            };
+            
+            
+            
+            Function.prototype.bind = function(obj) {
+                var __method = this;
+                return function() { 
+                    return __method.apply(obj, arguments); 
+                };
+            }
+            
+            
+            
+            function loadImg(ele){
+                
+                var	_W = ele.getAttribute('width'),
+                _H = ele.getAttribute('height'),
+                _tW = parseInt(window.getComputedStyle( document.getElementById("t") , null).width);
+                
+                if(_W && _H ){
+                    if( _W < 26 && _H < 26){
+                        ele.className = "ipic";
+                    }else if( 26 < _W && _W < ( _tW/2 ) ){
+                        ele.className = "fpic";			
+                    }else if( ( _tW/2 ) < _W && _W < ( _tW-20 ) ){
+                        ele.className = "dpic";
+                    }else if(( _tW-20 ) < _W ){
+                        ele.className = "bpic";
+                        ele.style.height = ( _tW * _H ) /_W + "px";	
+                    }
+                }else {
+                    ele.className = "dpic";
+                    imgCallback(ele);
+                }
+                
+            }
+            
+            
+            function imgCallback(ele){
+                var img = new Image();
+                img.src = ele.getAttribute('src');
+                if (img.complete) {
+                    if(img.width <26 && img.height<26){
+                        ele.className = "ipic";
+                        if(ele.previousSibling.outerHTML=="<br>"){
+                            ele.parentNode.removeChild(ele.previousSibling);
+                        }
+                        ele.nextSibling.nodeValue = ele.nextSibling.nodeValue.replace(/^\s*/,"");
+                    }
+                } else {
+                    img.onload = function () {
+                        if(img.width <26 && img.height<26){
+                            ele.className = "ipic";
+                            if(ele.previousSibling.outerHTML=="<br>"){
+                                ele.parentNode.removeChild(ele.previousSibling);
+                            }
+                            ele.nextSibling.nodeValue = ele.nextSibling.nodeValue.replace(/^\s*/,"");
+                        }
+                        img.onload = null;
+                    };
+                };
+            }
+            
+            
+            var oImgs = document.getElementsByTagName('img');
+            if(oImgs.length) {
+                for(var i=0, len = oImgs.length; i < len; i++) {
+                    var item = oImgs[i];		
+                    new loadImgsfoo(loadImg,item);
+                }
+            }
+            
+            </script>
+        
+        
+        
+        
+        
+    </body>
+</html>

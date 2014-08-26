@@ -1,0 +1,92 @@
+.tab {
+    /*width:80px;*/
+    height:28px;
+    line-height:26px;
+    color:#516c97;
+    display:inline-block;
+    vertical-align:middle;
+    overflow:hidden;
+    background-size:80px 24px;
+}
+.tab span {
+    height:24px;
+    display:block;
+    float:left;
+}
+    
+span.tab_icon {
+    width:18px;
+    padding-top:3px;
+    padding-left:6px;
+    background:url(feed_mark_page.png) 0 0 no-repeat;
+    /*background-size:20px 20px;*/
+    overflow:hidden;
+    
+}
+span.tab_icon img {
+    width:12px;
+    height:12px;
+    margin: 3px 0px 3px 6px;
+}
+    
+span.tab_arrow {
+    width:13px;
+    background:url(feed_mark_page.png) -107px 0 no-repeat;
+}
+
+span.tab_text {
+    max-width:85px;
+    padding-top:3px;
+    /*padding-left:5px;*/
+    color:#507daf;
+    font: normal 14px/18px Arial, Helvetica, sans-serif;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow:hidden;
+    margin:0;
+    background-size:90px 24px;
+}
+
+
+#icon_number {
+     padding-top:5px;
+     padding-right:20px;
+     padding-bottom:9px;
+}
+#icon_number a, #icon_number a:link, #icon_number a:visited {
+    display:block;
+    height:18px;
+    float:right;
+    margin:0 0 0 10px;
+    font: normal 14px/18px Arial, Helvetica, sans-serif;
+    color:#929292;
+    padding-left:30px;
+    text-align:center;
+}
+#icon_number a:active {
+    color:#929292;
+}
+#icon_number a.ywzf, #icon_number a.ywzf:link, #icon_number a.ywzf:visited {
+    background: url(icon_timeline_retweet.png) 0 0 no-repeat;
+    background-size:18px 18px;
+}
+#icon_number a.ywzf:active {
+    background: url(icon_timeline_retweet.png) 0 0 no-repeat;
+    background-size:18px 18px;
+}
+#icon_number a.ywbt, #icon_number a.ywbt:link, #icon_number a.ywbt:visited {
+    background: url(icon_timeline_like.png) 0 0 no-repeat;
+    background-size:18px 18px;
+}
+#icon_number a.ywbt:active {
+    background: url(icon_timeline_like.png) 0 0 no-repeat;
+    background-size:18px 18px;
+}
+#icon_number a.ywhf, #icon_number a.ywhf:link, #icon_number a.ywhf:visited {
+    background: url(icon_timeline_comment.png) 0 0 no-repeat;
+    background-size:18px 18px;
+}
+#icon_number a.ywhf:active {
+    background: url(icon_timeline_comment.png) 0 0 no-repeat;
+    background-size:18px 18px;
+}
