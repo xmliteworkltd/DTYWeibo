@@ -132,8 +132,10 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
  **/
 #pragma mark - 网络数据接口
 
-//base url
-#define kBaseAppUrl                @"http://182.92.68.65"
+
+
+
+
 
 
 

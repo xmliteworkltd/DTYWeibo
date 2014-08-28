@@ -13,8 +13,10 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
+
     #import "WeiboSDK.h"//预编译weiboSdk
     #import "WeiBoMacro.h"//预编译weibo常量类
     #import "UIImage+Fit.h"
+    #import "SinaWeiBoRequestDelegate.h"
 
 #endif
